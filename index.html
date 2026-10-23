@@ -68,16 +68,17 @@ a{color:inherit}
 .hero-frame{position:absolute;left:50%;top:50%;width:100%;height:100%;width:max(100cqw,calc(100cqh * 1.506));height:max(100cqh,calc(100cqw / 1.506));top:30%;transform:translate(-50%,-30%);transform-origin:50% 30%;animation:acercar 26s ease-in-out infinite alternate}
 @keyframes acercar{from{transform:translate(-50%,-30%) scale(1)}to{transform:translate(-50%,-30%) scale(1.07)}}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.glow,.dim{position:absolute;left:var(--x);top:var(--y);width:var(--s,24%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
-.glow{background:radial-gradient(closest-side,rgba(255,200,125,.6),rgba(255,170,90,.2) 55%,rgba(255,160,80,0) 100%);mix-blend-mode:screen;opacity:.7;animation:respirar 5.5s ease-in-out infinite}
-.glow.r{--s:11%;animation-duration:6.5s}
+.glow,.dim{position:absolute;left:var(--x);top:var(--y);width:var(--s,32%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
+.glow{background:radial-gradient(closest-side,rgba(255,214,150,.95),rgba(255,176,95,.45) 40%,rgba(255,160,80,.12) 70%,rgba(255,160,80,0) 100%);mix-blend-mode:screen;opacity:.6;animation:respirar 4s ease-in-out infinite}
+.glow.r{--s:15%;animation-duration:4s}
 .glow.flicker{animation:parpadeo 9s linear infinite}
 .dim{--s:13%;background:radial-gradient(closest-side,rgba(18,10,4,.8),rgba(18,10,4,0));opacity:0;animation:apagon 9s linear infinite}
 .dim.r{--s:7%}
 .room{position:absolute;inset:0;background:#000000;opacity:0;pointer-events:none;animation:sala 9s linear infinite}
+.warm{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(60% 45% at 50% 18%,rgba(255,170,90,.35),rgba(255,170,90,0) 100%);opacity:.3;animation:respirar 4s ease-in-out infinite}
 .dust{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:screen;pointer-events:none}
-@keyframes respirar{0%,100%{opacity:.5}50%{opacity:.85}}
-@keyframes parpadeo{0%,38%{opacity:.85}39%{opacity:.25}41%{opacity:.85}43%{opacity:.2}45%{opacity:.85}47%{opacity:.4}49%,84%{opacity:.85}85%{opacity:.3}87%,100%{opacity:.85}}
+@keyframes respirar{0%,100%{opacity:.15}50%{opacity:1}}
+@keyframes parpadeo{0%,38%{opacity:1}39%{opacity:.15}41%{opacity:1}43%{opacity:.1}45%{opacity:1}47%{opacity:.3}49%,84%{opacity:1}85%{opacity:.2}87%,100%{opacity:1}}
 @keyframes apagon{0%,38%{opacity:0}39%{opacity:.65}41%{opacity:0}43%{opacity:.7}45%{opacity:0}47%{opacity:.45}49%,84%{opacity:0}85%{opacity:.55}87%,100%{opacity:0}}
 @keyframes sala{0%,38%{opacity:0}39%{opacity:.08}41%{opacity:0}43%{opacity:.1}45%{opacity:0}47%{opacity:.05}49%,84%{opacity:0}85%{opacity:.07}87%,100%{opacity:0}}
 @media (prefers-reduced-motion: reduce){.hero-frame,.dim,.room{animation:none}.glow.flicker{animation:respirar 5.5s ease-in-out infinite}.dust{display:none}}
@@ -214,6 +215,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
     <div class="hero-frame">
       <img class="hero-img" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=70" srcset="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=70 1600w, https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2400&q=70 2400w" sizes="100vw" alt="Sillas de barbero frente a una pared de ladrillo">
       <span class="room" aria-hidden="true"></span>
+      <span class="warm" aria-hidden="true"></span>
       <span class="glow" style="--x:16.3%;--y:17.8%;animation-delay:-1.2s" aria-hidden="true"></span>
       <span class="dim" style="--x:51.3%;--y:17.8%" aria-hidden="true"></span>
       <span class="glow flicker" style="--x:51.3%;--y:17.8%" aria-hidden="true"></span>
@@ -438,7 +440,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
         <span class="logo-text"><b>EL FILO</b><small>BARBERÍA</small></span>
       </span>
       <div class="foot-col"><b>Dirección</b><span>Colonia Kennedy, Tegucigalpa</span></div>
-      <div class="foot-col"><b>WhatsApp</b><span>+504 0000-0000</span></div>
+      <div class="foot-col"><b>WhatsApp</b><a href="https://wa.me/50495367644" target="_blank" rel="noopener" style="text-decoration:none">+504 9536-7644</a></div>
       <div class="foot-col"><b>Horario</b><span>Lun a sáb 8:00 a.m. – 7:00 p.m.</span><span>Dom 8:00 a.m. – 12:00 p.m.</span></div>
     </div>
     <div class="foot-bottom">
@@ -448,14 +450,14 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
   </div>
 </footer>
 
-<a class="float" href="#reservar" aria-label="Reservar por WhatsApp">
+<a class="float" href="https://wa.me/50495367644?text=Hola%2C%20El%20Filo.%20Quiero%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"></path></svg>
 </a>
 
 <script>
 (function(){
   // Configuración del negocio. Para un cliente real, poner su número con código de país, ej. "50498765432".
-  const WHATSAPP = "";
+  const WHATSAPP = "50495367644";
   const NEGOCIO = "El Filo";
   const SERVICIOS = [
     ["Corte clásico",150],["Degradado (fade)",180],["Corte + barba",250],["Arreglo de barba",100],
