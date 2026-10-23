@@ -65,8 +65,8 @@ a{color:inherit}
 .hero{position:relative;color:#FFFFFF;min-height:640px;display:flex;flex-direction:column;background:#1B1B19;isolation:isolate}
 /* Foto de portada animada: el marco mantiene la proporción de la foto (1500×996) para que los brillos queden encima de cada lámpara */
 .hero-media{position:absolute;inset:0;overflow:hidden;z-index:-2;container-type:size}
-.hero-frame{position:absolute;left:50%;top:50%;width:100%;height:100%;width:max(100cqw,calc(100cqh * 1.506));height:max(100cqh,calc(100cqw / 1.506));transform:translate(-50%,-50%);animation:acercar 26s ease-in-out infinite alternate}
-@keyframes acercar{from{transform:translate(-50%,-50%) scale(1)}to{transform:translate(-50%,-50%) scale(1.07)}}
+.hero-frame{position:absolute;left:50%;top:50%;width:100%;height:100%;width:max(100cqw,calc(100cqh * 1.506));height:max(100cqh,calc(100cqw / 1.506));top:30%;transform:translate(-50%,-30%);transform-origin:50% 30%;animation:acercar 26s ease-in-out infinite alternate}
+@keyframes acercar{from{transform:translate(-50%,-30%) scale(1)}to{transform:translate(-50%,-30%) scale(1.07)}}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .glow,.dim{position:absolute;left:var(--x);top:var(--y);width:var(--s,24%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
 .glow{background:radial-gradient(closest-side,rgba(255,200,125,.6),rgba(255,170,90,.2) 55%,rgba(255,160,80,0) 100%);mix-blend-mode:screen;opacity:.7;animation:respirar 5.5s ease-in-out infinite}
@@ -77,10 +77,10 @@ a{color:inherit}
 .room{position:absolute;inset:0;background:#000000;opacity:0;pointer-events:none;animation:sala 9s linear infinite}
 .dust{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:screen;pointer-events:none}
 @keyframes respirar{0%,100%{opacity:.5}50%{opacity:.85}}
-@keyframes parpadeo{0%,38%{opacity:.85}39%{opacity:.2}40%{opacity:.8}41.5%{opacity:.1}43%{opacity:.9}44%{opacity:.35}45%,84%{opacity:.85}85%{opacity:.25}86%,100%{opacity:.85}}
-@keyframes apagon{0%,38%{opacity:0}39%{opacity:.7}40%{opacity:.1}41.5%{opacity:.8}43%{opacity:0}44%{opacity:.5}45%,84%{opacity:0}85%{opacity:.6}86%,100%{opacity:0}}
-@keyframes sala{0%,38%{opacity:0}39%{opacity:.1}40%{opacity:0}41.5%{opacity:.12}43%{opacity:0}44%{opacity:.06}45%,84%{opacity:0}85%{opacity:.08}86%,100%{opacity:0}}
-@media (prefers-reduced-motion: reduce){.hero-frame,.glow,.dim,.room{animation:none}.glow{opacity:.7}.dust{display:none}}
+@keyframes parpadeo{0%,38%{opacity:.85}39%{opacity:.25}41%{opacity:.85}43%{opacity:.2}45%{opacity:.85}47%{opacity:.4}49%,84%{opacity:.85}85%{opacity:.3}87%,100%{opacity:.85}}
+@keyframes apagon{0%,38%{opacity:0}39%{opacity:.65}41%{opacity:0}43%{opacity:.7}45%{opacity:0}47%{opacity:.45}49%,84%{opacity:0}85%{opacity:.55}87%,100%{opacity:0}}
+@keyframes sala{0%,38%{opacity:0}39%{opacity:.08}41%{opacity:0}43%{opacity:.1}45%{opacity:0}47%{opacity:.05}49%,84%{opacity:0}85%{opacity:.07}87%,100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.hero-frame,.dim,.room{animation:none}.glow.flicker{animation:respirar 5.5s ease-in-out infinite}.dust{display:none}}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,12,11,.86) 0%,rgba(12,12,11,.6) 50%,rgba(12,12,11,.25) 100%),linear-gradient(0deg,rgba(12,12,11,.6) 0%,rgba(12,12,11,0) 40%)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px}
 .nav{display:flex;gap:26px;align-items:center}
