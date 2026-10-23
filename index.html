@@ -63,7 +63,24 @@ a{color:inherit}
 
 /* Portada */
 .hero{position:relative;color:#FFFFFF;min-height:640px;display:flex;flex-direction:column;background:#1B1B19;isolation:isolate}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+/* Foto de portada animada: el marco mantiene la proporción de la foto (1500×996) para que los brillos queden encima de cada lámpara */
+.hero-media{position:absolute;inset:0;overflow:hidden;z-index:-2;container-type:size}
+.hero-frame{position:absolute;left:50%;top:50%;width:100%;height:100%;width:max(100cqw,calc(100cqh * 1.506));height:max(100cqh,calc(100cqw / 1.506));transform:translate(-50%,-50%);animation:acercar 26s ease-in-out infinite alternate}
+@keyframes acercar{from{transform:translate(-50%,-50%) scale(1)}to{transform:translate(-50%,-50%) scale(1.07)}}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.glow,.dim{position:absolute;left:var(--x);top:var(--y);width:var(--s,24%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
+.glow{background:radial-gradient(closest-side,rgba(255,200,125,.6),rgba(255,170,90,.2) 55%,rgba(255,160,80,0) 100%);mix-blend-mode:screen;opacity:.7;animation:respirar 5.5s ease-in-out infinite}
+.glow.r{--s:11%;animation-duration:6.5s}
+.glow.flicker{animation:parpadeo 9s linear infinite}
+.dim{--s:13%;background:radial-gradient(closest-side,rgba(18,10,4,.8),rgba(18,10,4,0));opacity:0;animation:apagon 9s linear infinite}
+.dim.r{--s:7%}
+.room{position:absolute;inset:0;background:#000000;opacity:0;pointer-events:none;animation:sala 9s linear infinite}
+.dust{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:screen;pointer-events:none}
+@keyframes respirar{0%,100%{opacity:.5}50%{opacity:.85}}
+@keyframes parpadeo{0%,38%{opacity:.85}39%{opacity:.2}40%{opacity:.8}41.5%{opacity:.1}43%{opacity:.9}44%{opacity:.35}45%,84%{opacity:.85}85%{opacity:.25}86%,100%{opacity:.85}}
+@keyframes apagon{0%,38%{opacity:0}39%{opacity:.7}40%{opacity:.1}41.5%{opacity:.8}43%{opacity:0}44%{opacity:.5}45%,84%{opacity:0}85%{opacity:.6}86%,100%{opacity:0}}
+@keyframes sala{0%,38%{opacity:0}39%{opacity:.1}40%{opacity:0}41.5%{opacity:.12}43%{opacity:0}44%{opacity:.06}45%,84%{opacity:0}85%{opacity:.08}86%,100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.hero-frame,.glow,.dim,.room{animation:none}.glow{opacity:.7}.dust{display:none}}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,12,11,.86) 0%,rgba(12,12,11,.6) 50%,rgba(12,12,11,.25) 100%),linear-gradient(0deg,rgba(12,12,11,.6) 0%,rgba(12,12,11,0) 40%)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px}
 .nav{display:flex;gap:26px;align-items:center}
@@ -193,7 +210,21 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 <body>
 
 <header class="hero" id="inicio">
-  <img class="hero-img" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=70" srcset="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=70 1600w, https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2400&q=70 2400w" sizes="100vw" alt="Sillas de barbero frente a una pared de ladrillo">
+  <div class="hero-media">
+    <div class="hero-frame">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=70" srcset="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=70 1600w, https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2400&q=70 2400w" sizes="100vw" alt="Sillas de barbero frente a una pared de ladrillo">
+      <span class="room" aria-hidden="true"></span>
+      <span class="glow" style="--x:16.3%;--y:17.8%;animation-delay:-1.2s" aria-hidden="true"></span>
+      <span class="dim" style="--x:51.3%;--y:17.8%" aria-hidden="true"></span>
+      <span class="glow flicker" style="--x:51.3%;--y:17.8%" aria-hidden="true"></span>
+      <span class="glow" style="--x:86.6%;--y:18.1%;animation-delay:-3.4s" aria-hidden="true"></span>
+      <span class="glow r" style="--x:28.6%;--y:34.2%;animation-delay:-1.2s" aria-hidden="true"></span>
+      <span class="dim r" style="--x:50.6%;--y:34.6%" aria-hidden="true"></span>
+      <span class="glow r flicker" style="--x:50.6%;--y:34.6%" aria-hidden="true"></span>
+      <span class="glow r" style="--x:72.7%;--y:34.4%;animation-delay:-3.4s" aria-hidden="true"></span>
+      <canvas class="dust" id="dust" aria-hidden="true"></canvas>
+    </div>
+  </div>
   <div class="top">
     <div class="wrap">
       <a class="logo" href="#inicio" aria-label="Barbería El Filo, inicio">
@@ -537,6 +568,63 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 
   llenarHoras();
   actualizar();
+
+  // Polvo flotando en la luz de las lámparas (se apaga si el usuario prefiere menos movimiento)
+  (function(){
+    const cv = document.getElementById("dust");
+    if (!cv || !cv.getContext || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = cv.getContext("2d");
+    const LAMPS = [0.163, 0.513, 0.866];
+    let W = 0, H = 0, dpr = 1, parts = [], visible = true, raf = 0;
+    function nuevo(inicio){
+      const lx = LAMPS[Math.floor(Math.random() * LAMPS.length)];
+      return {
+        x: lx + (Math.random() - 0.5) * 0.14,
+        y: inicio ? 0.2 + Math.random() * 0.5 : 0.18 + Math.random() * 0.06,
+        lx: lx,
+        r: 0.5 + Math.random() * 1.3,
+        vy: 0.00006 + Math.random() * 0.00012,
+        ph: Math.random() * Math.PI * 2,
+        sp: 0.0006 + Math.random() * 0.0012
+      };
+    }
+    function medir(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    }
+    function cuadro(t){
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      for (const p of parts) {
+        p.y += p.vy;
+        p.ph += p.sp;
+        const x = p.x + Math.sin(p.ph) * 0.006;
+        const cono = Math.max(0, 1 - Math.abs(x - p.lx) / (0.04 + (p.y - 0.18) * 0.25));
+        const vida = Math.min(1, (p.y - 0.18) / 0.05) * Math.max(0, 1 - (p.y - 0.45) / 0.25);
+        const a = 0.55 * cono * vida * (0.6 + 0.4 * Math.sin(p.ph * 3));
+        if (a > 0.01) {
+          ctx.beginPath();
+          ctx.fillStyle = "rgba(255,214,160," + a.toFixed(3) + ")";
+          ctx.arc(x * W * dpr, p.y * H * dpr, p.r * dpr, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        if (p.y > 0.72) Object.assign(p, nuevo(false));
+      }
+      raf = visible ? requestAnimationFrame(cuadro) : 0;
+    }
+    medir();
+    for (let i = 0; i < 70; i++) parts.push(nuevo(true));
+    new ResizeObserver(medir).observe(cv);
+    new IntersectionObserver(es => {
+      visible = es[0].isIntersecting && !document.hidden;
+      if (visible && !raf) raf = requestAnimationFrame(cuadro);
+    }).observe(cv);
+    document.addEventListener("visibilitychange", () => {
+      visible = !document.hidden;
+      if (visible && !raf) raf = requestAnimationFrame(cuadro);
+    });
+    raf = requestAnimationFrame(cuadro);
+  })();
 })();
 </script>
 </body>
