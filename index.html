@@ -67,10 +67,10 @@ a{color:inherit}
 .hero-media{position:absolute;inset:0;overflow:hidden;z-index:-2;container-type:size}
 .hero-frame{position:absolute;left:50%;top:50%;width:100%;height:100%;width:max(100cqw,calc(100cqh * 1.506));height:max(100cqh,calc(100cqw / 1.506));top:30%;transform:translate(-50%,-30%);transform-origin:50% 30%;animation:acercar 26s ease-in-out infinite alternate}
 @keyframes acercar{from{transform:translate(-50%,-30%) scale(1)}to{transform:translate(-50%,-30%) scale(1.07)}}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.glow,.dim{position:absolute;left:var(--x);top:var(--y);width:var(--s,32%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:luzsala 4s ease-in-out infinite}
+.glow,.dim{position:absolute;left:var(--x);top:var(--y);width:var(--s,42%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
 .glow{background:radial-gradient(closest-side,rgba(255,214,150,.95),rgba(255,176,95,.45) 40%,rgba(255,160,80,.12) 70%,rgba(255,160,80,0) 100%);mix-blend-mode:screen;opacity:.6;animation:respirar 4s ease-in-out infinite}
-.glow.r{--s:15%;animation-duration:4s}
+.glow.r{--s:20%}
 .glow.flicker{animation:parpadeo 9s linear infinite}
 .dim{--s:13%;background:radial-gradient(closest-side,rgba(18,10,4,.8),rgba(18,10,4,0));opacity:0;animation:apagon 9s linear infinite}
 .dim.r{--s:7%}
@@ -78,6 +78,7 @@ a{color:inherit}
 .warm{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(60% 45% at 50% 18%,rgba(255,170,90,.35),rgba(255,170,90,0) 100%);opacity:.3;animation:respirar 4s ease-in-out infinite}
 .dust{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:screen;pointer-events:none}
 @keyframes respirar{0%,100%{opacity:.15}50%{opacity:1}}
+@keyframes luzsala{0%,100%{filter:brightness(.72) saturate(.9)}50%{filter:brightness(1.12) saturate(1.08)}}
 @keyframes parpadeo{0%,38%{opacity:1}39%{opacity:.15}41%{opacity:1}43%{opacity:.1}45%{opacity:1}47%{opacity:.3}49%,84%{opacity:1}85%{opacity:.2}87%,100%{opacity:1}}
 @keyframes apagon{0%,38%{opacity:0}39%{opacity:.65}41%{opacity:0}43%{opacity:.7}45%{opacity:0}47%{opacity:.45}49%,84%{opacity:0}85%{opacity:.55}87%,100%{opacity:0}}
 @keyframes sala{0%,38%{opacity:0}39%{opacity:.08}41%{opacity:0}43%{opacity:.1}45%{opacity:0}47%{opacity:.05}49%,84%{opacity:0}85%{opacity:.07}87%,100%{opacity:0}}
@@ -216,14 +217,14 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
       <img class="hero-img" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=70" srcset="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=70 1600w, https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2400&q=70 2400w" sizes="100vw" alt="Sillas de barbero frente a una pared de ladrillo">
       <span class="room" aria-hidden="true"></span>
       <span class="warm" aria-hidden="true"></span>
-      <span class="glow" style="--x:16.3%;--y:17.8%;animation-delay:-1.2s" aria-hidden="true"></span>
+      <span class="glow" style="--x:16.3%;--y:17.8%" aria-hidden="true"></span>
       <span class="dim" style="--x:51.3%;--y:17.8%" aria-hidden="true"></span>
       <span class="glow flicker" style="--x:51.3%;--y:17.8%" aria-hidden="true"></span>
-      <span class="glow" style="--x:86.6%;--y:18.1%;animation-delay:-3.4s" aria-hidden="true"></span>
-      <span class="glow r" style="--x:28.6%;--y:34.2%;animation-delay:-1.2s" aria-hidden="true"></span>
+      <span class="glow" style="--x:86.6%;--y:18.1%" aria-hidden="true"></span>
+      <span class="glow r" style="--x:28.6%;--y:34.2%" aria-hidden="true"></span>
       <span class="dim r" style="--x:50.6%;--y:34.6%" aria-hidden="true"></span>
       <span class="glow r flicker" style="--x:50.6%;--y:34.6%" aria-hidden="true"></span>
-      <span class="glow r" style="--x:72.7%;--y:34.4%;animation-delay:-3.4s" aria-hidden="true"></span>
+      <span class="glow r" style="--x:72.7%;--y:34.4%" aria-hidden="true"></span>
       <canvas class="dust" id="dust" aria-hidden="true"></canvas>
     </div>
   </div>
